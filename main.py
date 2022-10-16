@@ -18,7 +18,7 @@ db = SQLAlchemy()
 # create the app
 app = Flask(__name__)
 # configure the SQLite database, relative to the app instance folder
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL",  "sqlite:///blog.db")
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
 # required to use CSRF in WTForms
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 # initialize the app with the extension
