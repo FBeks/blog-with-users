@@ -11,15 +11,16 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, cur
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 from flask_gravatar import Gravatar
 import email_validator
+import os
 
 # create the extension
 db = SQLAlchemy()
 # create the app
 app = Flask(__name__)
 # configure the SQLite database, relative to the app instance folder
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blog.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL",  "sqlite:///blog.db")
 # required to use CSRF in WTForms
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 # initialize the app with the extension
 db.init_app(app)
 ckeditor = CKEditor(app)
